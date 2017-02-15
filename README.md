@@ -10,7 +10,9 @@ Finally, I added phpunit to integrate unit testing into my workflow. Unfortunate
 
 **This is super untested.** Do not use in production. I built this on Windows so permissions are not correct. Maybe one day I will fix it.
 
-This image works even better when provisioning your projects with [nimble](https://github.com/johnrom/nimble), enabling `phpmyadmin`, `phpunit` testing, xdebug, `webgrind` and `wp-cli` all at the same time instantly.
+This image works even better when provisioning your projects with [nimble](https://github.com/johnrom/nimble), enabling `phpmyadmin`, `phpunit` testing, `xdebug`, `webgrind` and `wp-cli` all at the same time instantly.
+
+## Finding your IP Address
 
 To use, you'll have to pass a variable to XDebug with your IP Address. Please note, this is the IP address of your machine, not the docker VM. It is generally a 192.168.* address. You can find it a number of ways, one is to check the Virtual Host-Only Network in VirtualBox (Docker toolsbox only) and look at the gateway IP. Another way is to get the IP address of eth1 on the Virtual Machine, and replace the last octal with "1". If using native Docker, [nimble](https://github.com/johnrom/nimble) does this work for you.
 
@@ -21,6 +23,8 @@ Are you super lazy? Try the following within Docker Terminal, replacing default 
 `echo $(docker-machine ip default) | sed 's/\.[0-9]*$/.1/'`
 
 Example: `192.168.99.1`
+
+## Adding the IP Address to your config
 
 Are you the only one developing your project? Try:
 
@@ -57,9 +61,9 @@ docker-compose up -d
 
 This tiny command runs the `docker-machine ip | sed` command above and exports it to an environment variable, that docker-compose picks up.
 
-To confirm everything is working, make a phpinfo.php with `<?php phpinfo(); ?>` and check the variables for XDebug -- "remote_host" should show your IP address.
-
 ## So what now?
+
+To confirm everything is working, make a `phpinfo.php` with `<?php phpinfo(); ?>` and check the variables for XDebug -- "remote_host" should show your IP address. And don't forget to delete it.
 
 Now, PHP will query your host machine on port 9000 every time you make a request. You'll have to set up an xdebug debugger in your editor of choice. I'm currently using VS Code so I haven't verified any others' tutorials. Set breakpoints, test listening for notices, etc. It should all magically work.
 
