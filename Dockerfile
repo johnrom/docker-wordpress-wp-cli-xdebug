@@ -6,12 +6,17 @@ FROM wordpress:latest
 MAINTAINER web@johnrom.com
 
 # Add sudo in order to run wp-cli as the www-data user
-RUN apt-get update && apt-get install -y sudo less
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y sudo less subversion && apt-get -q -y install mysql-server
 
 # Add WP-CLI
 RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 COPY wp-su.sh /bin/wp
 RUN chmod +x /bin/wp-cli.phar /bin/wp
+
+# Use https://phar.phpunit.de/phpunit-6.0.phar for PHP 7
+RUN curl -Lo /tmp/phpunit.phar https://phar.phpunit.de/phpunit-5.7.phar \
+    && chmod +x /tmp/phpunit.phar \
+    && sudo mv /tmp/phpunit.phar /bin/phpunit
 
 # Cleanup
 RUN apt-get clean
