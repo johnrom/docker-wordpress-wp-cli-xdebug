@@ -10,7 +10,7 @@ Finally, I added phpunit to integrate unit testing into my workflow.
 
 **This is super untested.** Do not use in production. I built this on Windows so permissions are not correct. Maybe one day I will fix it.
 
-This works provisioning your projects with [nimble](https://github.com/johnrom/nimble), enabling `phpmyadmin`, `phpunit` testing, xdebug, `webgrind` and `wp-cli` all at the same time instantly.
+This image works even better when provisioning your projects with [nimble](https://github.com/johnrom/nimble), enabling `phpmyadmin`, `phpunit` testing, xdebug, `webgrind` and `wp-cli` all at the same time instantly.
 
 To use, you'll have to pass a variable to XDebug with your IP Address. Please note, this is the IP address of your machine, not the docker VM. It is generally a 192.168.* address. You can find it a number of ways, one is to check the Virtual Host-Only Network in VirtualBox (Docker toolsbox only) and look at the gateway IP. Another way is to get the IP address of eth1 on the Virtual Machine, and replace the last octal with "1". If using native Docker, [nimble](https://github.com/johnrom/nimble) does this work for you.
 
