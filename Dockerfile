@@ -3,7 +3,7 @@
 # Github Repo: https://github.com/johnrom/docker-wordpress-wp-cli-xdebug
 
 FROM wordpress:latest
-MAINTAINER web@johnrom.com
+LABEL maintainer=web@johnrom.com
 
 # Add sudo in order to run wp-cli as the www-data user
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get install -y sudo less subversion && apt-get -q -y install mysql-server
