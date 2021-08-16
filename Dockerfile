@@ -2,7 +2,7 @@
 # Docker Hub: https://registry.hub.docker.com/u/johnrom/docker-wordpress-wp-cli-xdebug/
 # Github Repo: https://github.com/johnrom/docker-wordpress-wp-cli-xdebug
 
-FROM wordpress:latest
+FROM wordpress:5.8.0
 LABEL maintainer=web@johnrom.com
 
 # Add sudo in order to run wp-cli as the www-data user
@@ -13,7 +13,7 @@ RUN curl -o /bin/wp-cli.phar https://raw.githubusercontent.com/wp-cli/builds/gh-
 COPY wp-su.sh /bin/wp
 RUN chmod +x /bin/wp-cli.phar /bin/wp
 
-RUN curl -Lo /tmp/phpunit.phar https://phar.phpunit.de/phpunit-6.0.phar \
+RUN curl -Lo /tmp/phpunit.phar https://phar.phpunit.de/phpunit-9.5.phar \
     && chmod +x /tmp/phpunit.phar \
     && sudo mv /tmp/phpunit.phar /bin/phpunit
 
